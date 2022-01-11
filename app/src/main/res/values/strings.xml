@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AndroidLecture</string>
+
+
+
+    //Login Layout String
+    <string name="login_header">Merhaba Ben Login</string>
+    <string name="user_id">Student ID</string>
+    <string name="user_psw">Password</string>
+    <string name="user_login_button">Login</string>
+</resources>
