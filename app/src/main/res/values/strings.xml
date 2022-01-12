@@ -6,6 +6,53 @@
     //Login Layout String
     <string name="login_header">Merhaba Ben Login</string>
     <string name="user_id">Student ID</string>
+    <string name="helper_student_id">Please Enter 10 digit ID Number</string>
     <string name="user_psw">Password</string>
     <string name="user_login_button">Login</string>
+    <string name="user_register_button">Register</string>
+    <string name="admin_id">Lecturer ID</string>
+    <string name="error">Please check your input</string>
+
+    //Register Layout String
+    <string name="confirm_password_error">Passwords does not match</string>
+    <string name="user_confirm_psw_button">Confirm Password</string>
+    <string name="user_confirm_psw">Confirm Password</string>
+    <string name="profile_selection">Please select user profile from dropdown menu</string>
+    <string name="profile">Profile</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="name_helper">Please enter your name</string>
+    <string name="surname_helper">Please enter your surname</string>
+    <string name="email">E-mail</string>
+    <string name="email_helper">Please enter your organization e-mail address</string>
+    <string name="department">Department</string>
+    <string name="department_helper">Please select your department from dropdown menu</string>
+    <string name="birthdate">Birth Date</string>
+    <string name="birthdate_helper">Please write your birth date with DD/MM/YYYY format</string>
+    <string name="register_success">REGISTER SUCCESSFUL</string>
+    <string name="registered_id">Registered ID: </string>
+    <string name="register_warning">Please save a copy of your registered ID</string>
+    <string name="proceed">Proceed</string>
+
+    //Departments
+    <string-array name="departments">
+
+        <item>Computer Science Department</item>
+        <item>Civil Engineering</item>
+        <item>Electrical and Electronics Engineering</item>
+        <item>Energy Systems Engineering</item>
+        <item>Mathematics</item>
+
+    </string-array>
+
+
+
+
+    <string-array name="profile">
+
+        <item>Student</item>
+        <item>Lecturer</item>
+
+
+    </string-array>
 </resources>

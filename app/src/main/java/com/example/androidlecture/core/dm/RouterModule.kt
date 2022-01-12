@@ -1,5 +1,9 @@
 package com.example.androidlecture.core.dm
 
+import com.example.androidlecture.app_modules.router.Router
+import com.example.androidlecture.src.user.UserNavigationStatus
+import com.example.androidlecture.src.user.UserRouter
+import com.example.androidlecture.src.user.ds.UserScope
 import dagger.Binds
 import dagger.Module
 
@@ -9,6 +13,8 @@ import dagger.Module
 abstract class RouterModule {
 
 
+    @Binds @UserScope
+    abstract fun provideUserRouter(routerProvider: UserRouter): Router<UserNavigationStatus>
 
 
 
