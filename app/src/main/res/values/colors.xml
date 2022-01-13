@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="turkuaz">#00C4B4</color>
     <color name="transparent">#FFFFFF</color>
+    <color name="semi_trans">#A4818181</color>
+    <color name="red">#FF0000</color>
 </resources>

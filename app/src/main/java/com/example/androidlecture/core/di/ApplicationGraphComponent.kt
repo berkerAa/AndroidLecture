@@ -5,6 +5,8 @@ import com.example.androidlecture.core.dm.DatabaseModule
 import com.example.androidlecture.core.dm.NetworkModule
 import com.example.androidlecture.core.dm.StorageModule
 import com.example.androidlecture.core.dm.ViewModelModule
+import com.example.androidlecture.src.dashboard.di.DashboardComponent
+import com.example.androidlecture.src.dashboard.di.DashboardProvider
 import com.example.androidlecture.src.user.di.UserComponent
 import com.example.androidlecture.src.user.di.UserProvider
 import dagger.BindsInstance
@@ -18,7 +20,8 @@ import javax.inject.Singleton
     StorageModule::class,
     ViewModelModule::class,
     DatabaseModule::class,
-    UserProvider::class
+    UserProvider::class,
+    DashboardProvider::class
 ])
 interface ApplicationGraphComponent {
     @Component.Factory
@@ -28,6 +31,7 @@ interface ApplicationGraphComponent {
     }
 
     fun userComponent(): UserComponent.Factory
+    fun dashboardComponent(): DashboardComponent.Factory
 //@LogicFactoryProvider
 }
 

@@ -11,6 +11,7 @@ import androidx.core.widget.doOnTextChanged
 import com.example.androidlecture.R
 import com.example.androidlecture.app_modules.presenter.Presenter
 import com.example.androidlecture.databinding.StudentActivityLoginDatabindingBinding
+import com.example.androidlecture.src.user.Dashboard
 import com.example.androidlecture.src.user.Register
 import com.example.androidlecture.src.user.UserBridge
 import com.example.androidlecture.src.user.cases.CorrectValue
@@ -53,7 +54,7 @@ class StudentLoginPresenter: Presenter<StudentLoginViewModel, StudentActivityLog
         viewBinding.studentIdEdittextField.doOnTextChanged { text, start, before, count ->
 
             when (start){
-                8 -> viewModel.setStudentIdStatus(CorrectValue)
+                9 -> viewModel.setStudentIdStatus(CorrectValue)
                 else -> viewModel.setStudentIdStatus(IncorrectValue)
             }
 
@@ -71,7 +72,7 @@ class StudentLoginPresenter: Presenter<StudentLoginViewModel, StudentActivityLog
                         Log.d(STUDENT_TAG, status.toString())
                         when (status)
                         {
-                            Success ->  Log.d(STUDENT_TAG, status.toString())
+                            Success ->  (activity as UserBridge).navigation(Dashboard())
                             CredentialsError -> viewBinding.apply {
                                 passwordEditText.error = getString(R.string.error)
                                 idEditText.error = getString(R.string.error)

@@ -1,5 +1,6 @@
 package com.example.androidlecture.app_modules.bridge
 
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.androidlecture.app_modules.router.Router
@@ -23,7 +24,7 @@ open class Bridge<Component: Any, NavigationStatus: Any> : AppCompatActivity(){
             .commit()
     }
 
-    fun navigation(navigationStatus: NavigationStatus, containerViewId: Int = R.id.fragment_holder) = router.navigationLogic(activity = this, navigationStatus, containerViewId)
+    fun navigation(navigationStatus: NavigationStatus, containerViewId: Int = R.id.fragment_holder, bundle: Bundle? = null) = router.navigationLogic(activity = this, navigationStatus, containerViewId, bundle)
     override fun onBackPressed() =  router.navigationLogicOnBackPressed(this, supportFragmentManager.fragments.last(), R.id.fragment_holder)
     override fun onStop() =  compositeDisposable.clear().run{super.onStop()}
     override fun onDestroy() =  compositeDisposable.dispose().run { super.onDestroy() }

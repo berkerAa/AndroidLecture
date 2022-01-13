@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.androidlecture.app_modules.sequilezer.model.StudentModel
+import com.example.androidlecture.app_modules.storage.Storage
 import com.example.androidlecture.src.user.UserRepository
 import com.example.androidlecture.src.user.cases.*
 import com.example.androidlecture.src.user.data.StudentLoginModel
@@ -14,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
-class StudentLoginViewModel @Inject constructor(private val userRepository: UserRepository): ViewModel() {
+class StudentLoginViewModel @Inject constructor(private val userRepository: UserRepository, private val storage: Storage): ViewModel() {
     var studentId by Delegates.notNull<Int>()
     var password by Delegates.notNull<String>()
     private val _studentIdStatus: MutableLiveData<FieldStatus> by lazy {
@@ -24,7 +25,9 @@ class StudentLoginViewModel @Inject constructor(private val userRepository: User
     val studentIdStatusLiveData: LiveData<FieldStatus>
         get() = _studentIdStatus
 
-
+    fun setSession(studentModel: StudentModel) {
+        storage.setModel(USER_SESSION, studentModel)
+    }
 
     fun setStudentIdStatus(value: FieldStatus) = _studentIdStatus.setValue(value)
 
@@ -37,7 +40,7 @@ class StudentLoginViewModel @Inject constructor(private val userRepository: User
             .map { BaseResponse ->
                 when(BaseResponse.status)
                 {
-                    200 -> if (loginModel.studentPassword == (BaseResponse.data as StudentModel).password) Success else CredentialsError
+                    200 -> if (loginModel.studentPassword == (BaseResponse.data as StudentModel).password) setSession(BaseResponse.data).run { Success } else CredentialsError
                     500 -> CredentialsError
                     404 -> ConnectionError
                     else -> UnknownError
@@ -46,5 +49,6 @@ class StudentLoginViewModel @Inject constructor(private val userRepository: User
     }
     companion object {
         const val STUDENT_LOGIN_VIEW_MODEL = "STUDENT LOGIN VIEW MODEL"
+        const val USER_SESSION = "user_session"
     }
 }

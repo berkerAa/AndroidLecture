@@ -133,7 +133,7 @@ class RegisterPresenter : Presenter<RegisterViewModel, StudentActivityRegisterDa
                         password = passowodPopupLayout.confirmPasswordEdittextField.text.toString(),
                         department = viewModel.department,
                         email = viewModel.email,
-                        isLecturer = viewModel.isLecturer)
+                        isLecturer = viewModel.profile.value!!)
                 )
                     .subscribe { status ->
                         Log.d(REGISTER_TAG, status.toString())

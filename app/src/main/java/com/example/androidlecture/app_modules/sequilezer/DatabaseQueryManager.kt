@@ -4,10 +4,7 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 import android.util.Log
-import com.example.androidlecture.app_modules.sequilezer.model.DatabaseSchemas
-import com.example.androidlecture.app_modules.sequilezer.model.InsertModel
-import com.example.androidlecture.app_modules.sequilezer.model.SelectModel
-import com.example.androidlecture.app_modules.sequilezer.model.StudentModel
+import com.example.androidlecture.app_modules.sequilezer.model.*
 import com.example.androidlecture.data.database.FeedUniversity
 import java.lang.Exception
 import java.lang.reflect.Array
@@ -22,15 +19,20 @@ class DatabaseQueryManager constructor(private val db: SQLiteOpenHelper) {
     fun select(selectModel: SelectModel): ArrayList<DatabaseSchemas> {
            return when (selectModel.table) {
                 is StudentModel -> selectStudent(selectModel)
+               else -> selectEverything()
             }
 
 
         //return selectEverything()
     }
+    fun delete(selectModel: SelectModel): Boolean {
+        return deleteStudent(selectModel)
+    }
 
     fun insert(insertModel: InsertModel): Boolean {
         return when (insertModel.table) {
             is StudentModel -> insertStudent(insertModel)
+            else -> false
         }
     }
     private fun selectEverything(): ArrayList<DatabaseSchemas>{
@@ -63,7 +65,7 @@ class DatabaseQueryManager constructor(private val db: SQLiteOpenHelper) {
             }
         }
         students.forEach {
-            Log.d("Query Results", it.toString())
+            Log.d(QUERY_RESULT, it.toString())
         }
         return students
     }
@@ -99,7 +101,9 @@ class DatabaseQueryManager constructor(private val db: SQLiteOpenHelper) {
                 )
             }
         }
-
+        students.forEach {
+            Log.d(QUERY_RESULT, it.toString())
+        }
         return students
     }
 
@@ -134,5 +138,21 @@ class DatabaseQueryManager constructor(private val db: SQLiteOpenHelper) {
         }
         writeable.endTransaction()
         return true
+    }
+
+   private fun deleteStudent(selectModel: SelectModel): Boolean{
+
+       try {
+           writeable.delete(FeedUniversity.FeedStudent.TABLE_NAME, selectModel.selectionKey + " = ?", selectModel.selectionValue)
+       }
+       catch (exc: Exception){
+           return false
+       }
+
+       return true
+   }
+
+    companion object {
+        const val QUERY_RESULT = "Query Results"
     }
 }

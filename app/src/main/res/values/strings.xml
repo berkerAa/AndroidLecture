@@ -34,6 +34,22 @@
     <string name="register_warning">Please save a copy of your registered ID</string>
     <string name="proceed">Proceed</string>
 
+
+    //Panel Layout Strings
+    <string name="panel_department_helper">Please select department from dropdown menu</string>
+    <string name="search">Search</string>
+
+    //Details Layout Strings
+    <string name="access_error">You don\'t have correct access for edit operations</string>
+    <string name="id">ID: %1s</string>
+    <string name="name_format">%1s %2s</string>
+    <string name="entry_email">E-Mail: %1s</string>
+    <string name="entry_department">Department: %1s</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_success">Delete Operation Successful</string>
+    <string name="delete_error">Error occurred on delete operation</string>
+
     //Departments
     <string-array name="departments">
 
